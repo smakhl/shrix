@@ -25,6 +25,10 @@ export default class Shrix<Store> {
         });
     }
 
+    public getState() {
+        return this.state;
+    }
+
     private runReducers(initialState: any, action: Action) {
         return this.reducers.reduce(this.reduceState(action), initialState);
     }
