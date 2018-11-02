@@ -1,4 +1,4 @@
-export class Shrix<Store> {
+export default class Shrix<Store> {
     private state: Store;
     private reducers: Reducer[];
     private subscribers: Subscriber[];

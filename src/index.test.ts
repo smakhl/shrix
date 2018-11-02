@@ -1,4 +1,4 @@
-import { Shrix } from ".";
+import Shrix from ".";
 
 interface Store {
     count: number;
