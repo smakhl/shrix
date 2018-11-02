@@ -7,5 +7,10 @@
     "rules": {
         "interface-name": [true, "never-prefix"]
     },
-    "rulesDirectory": []
+    "rulesDirectory": [],
+    "linterOptions": {
+        "exclude": [
+            "dist/"
+        ]
+    }
 }
