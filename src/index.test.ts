@@ -1,12 +1,12 @@
-import Shrix from ".";
+import * as Shrix from "./index";
 
 interface Store {
     count: number;
 }
 
-const countStore = new Shrix<Store>({ count: 1 });
+const countStore = new Shrix.Store<Store>({ count: 1 });
 
-const countReducer: Reducer = (prevState, action) => {
+const countReducer: Shrix.Reducer = (prevState, action) => {
     switch (action.type) {
         case "INCREMENT_COUNT":
             console.log(`${prevState.count} + ${action.payload} = `); // tslint:disable-line
@@ -23,7 +23,7 @@ const countReducer: Reducer = (prevState, action) => {
 
 countStore.addReducer(countReducer);
 
-const mySubscriber: Subscriber = {
+const mySubscriber: Shrix.Subscriber = {
     updateState(state, action) {
         console.log(state.count, action.type); // tslint:disable-line
     },

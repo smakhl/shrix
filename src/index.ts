@@ -1,8 +1,19 @@
-export default class Shrix<Store> {
-    private state: Store;
+export interface Subscriber {
+    updateState(state: any, action: Action): void;
+}
+
+export type Reducer = (previousState: any, action: Action) => {};
+
+export interface Action {
+    type: string;
+    payload?: any;
+}
+
+export class Store<State> {
+    private state: State;
     private reducers: Reducer[];
     private subscribers: Subscriber[];
-    constructor(initialStore: Store) {
+    constructor(initialStore: State) {
         this.state = initialStore;
         this.reducers = [];
         this.subscribers = [];
