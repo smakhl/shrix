@@ -23,10 +23,8 @@ const countReducer: Shrix.Reducer = (prevState, action) => {
 
 countStore.addReducer(countReducer);
 
-const mySubscriber: Shrix.Subscriber = {
-    updateState(state, action) {
-        console.log(state.count, action.type); // tslint:disable-line
-    },
+const mySubscriber: Shrix.Subscriber = (state, action) => {
+    console.log(state.count, action.type); // tslint:disable-line
 };
 
 countStore.subscribe(mySubscriber);

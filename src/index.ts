@@ -1,6 +1,4 @@
-export interface Subscriber {
-    updateState(state: any, action: Action): void;
-}
+export type Subscriber = (state: any, action: Action) => void;
 
 export type Reducer = (previousState: any, action: Action) => {};
 
@@ -30,8 +28,8 @@ export class Store<State> {
     public dispatch(action: Action) {
         this.state = this.runReducers(this.state, action);
         this.subscribers.forEach((subscriber) => {
-            if (subscriber && typeof subscriber.updateState === "function") {
-                subscriber.updateState(this.state, action);
+            if (subscriber && typeof subscriber === "function") {
+                subscriber(this.state, action);
             }
         });
     }
