@@ -1,6 +1,6 @@
 export type Subscriber<State> = (state: State, action: Action) => void;
 
-export type Reducer<State> = (previousState: State, action: Action) => {};
+export type Reducer<State> = (previousState: State, action: Action) => State;
 
 export interface Action {
     type: string;
