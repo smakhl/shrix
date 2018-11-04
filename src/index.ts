@@ -1,6 +1,6 @@
-export type Subscriber = (state: any, action: Action) => void;
+export type Subscriber<State> = (state: State, action: Action) => void;
 
-export type Reducer = (previousState: any, action: Action) => {};
+export type Reducer<State> = (previousState: State, action: Action) => {};
 
 export interface Action {
     type: string;
@@ -9,19 +9,19 @@ export interface Action {
 
 export class Store<State> {
     private state: State;
-    private reducers: Reducer[];
-    private subscribers: Subscriber[];
+    private reducers: Array<Reducer<State>>;
+    private subscribers: Array<Subscriber<State>>;
     constructor(initialStore: State) {
         this.state = initialStore;
         this.reducers = [];
         this.subscribers = [];
     }
 
-    public addReducer(reducer: Reducer) {
+    public addReducer(reducer: Reducer<State>) {
         this.reducers.push(reducer);
     }
 
-    public subscribe(subscriber: Subscriber) {
+    public subscribe(subscriber: Subscriber<State>) {
         this.subscribers.push(subscriber);
     }
 
@@ -43,7 +43,7 @@ export class Store<State> {
     }
 
     private reduceState(action: Action) {
-        return (currentState: any, reducer: Reducer) => {
+        return (currentState: any, reducer: Reducer<State>) => {
             if (typeof reducer === "function") {
                 return reducer(currentState, action);
             }

@@ -6,7 +6,7 @@ interface Store {
 
 const countStore = new Shrix.Store<Store>({ count: 1 });
 
-const countReducer: Shrix.Reducer = (prevState, action) => {
+const countReducer: Shrix.Reducer<Store> = (prevState, action) => {
     switch (action.type) {
         case "INCREMENT_COUNT":
             console.log(`${prevState.count} + ${action.payload} = `); // tslint:disable-line
@@ -23,7 +23,7 @@ const countReducer: Shrix.Reducer = (prevState, action) => {
 
 countStore.addReducer(countReducer);
 
-const mySubscriber: Shrix.Subscriber = (state, action) => {
+const mySubscriber: Shrix.Subscriber<Store> = (state, action) => {
     console.log(state.count, action.type); // tslint:disable-line
 };
 
