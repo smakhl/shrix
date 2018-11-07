@@ -45,7 +45,7 @@ const countReducer: Shrix.Reducer<MyStore> = (prevState: MyStore, action: Shrix.
 countStore.addReducer(countReducer);
 
 // создание обработчика
-const mySubscriber: Shrix.Subscriber<Store> = (newState: MyStore, action: Shrix.Action) => {
+const mySubscriber: Shrix.Subscriber<MyStore> = (newState: MyStore, action: Shrix.Action) => {
     console.log(`'${action.type}', payload: ${newState.count}`);
 };
 
